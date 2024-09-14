@@ -1,0 +1,15 @@
+import requests
+
+# Get the user's IP address
+response = requests.get('https://api.ipify.org')
+ip_address = response.text.strip()
+api_key = 'YOUR_API_KEY'
+response = requests.get(f'https://api.ipgeolocation.io/ipgeo?apiKey={api_key}&ip={ip_address}')
+geolocation_data = response.json()
+latitude = geolocation_data['latitude']
+longitude = geolocation_data['longitude']
+map_url = f'https://www.google.com/maps/@?api=1&map_action=map&center={latitude},{longitude}&zoom=10'
+print(f'Your geolocation is: {latitude}, {longitude}')
+print(f'View on Google Maps: {map_url}')
+
+#give ip address of the target in the palce of {ip_address}
